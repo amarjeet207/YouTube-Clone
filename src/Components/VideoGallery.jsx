@@ -1,7 +1,7 @@
 import React from 'react'
-import Thumbnail from './Thumbnail';
 
-const VideoGrids = () => {
+
+const VideoGallery = () => {
 
   const filters = ["All","HTML","Gaming","React","Web Development","Coding","Data Structure",
                   "JavaScript","Stand up","Cricket bats","Indian Movies","Funny Videos","Cat Videos","Pop Music"];
@@ -19,15 +19,11 @@ const VideoGrids = () => {
 
       {/* Videos Grid */}
       <div className=' grid grid-cols-3 gap-4  border-2 border-red-500'>
-        <Thumbnail/>
-        <Thumbnail/>
-        <Thumbnail/>
-        <Thumbnail/>
-        <Thumbnail/>
+        
        
       </div>
     </div>
   )
 }
 
-export default VideoGrids
+export default VideoGallery

@@ -2,7 +2,7 @@ import React from 'react'
 import thumbnail from '../assets/thumbnail.webp'
 import vert from '../assets/more_vert.svg'
 
-const Thumbnail = () => {
+const VideoItem = () => {
   return (
     <div>
 
@@ -34,4 +34,4 @@ const Thumbnail = () => {
   )
 }
 
-export default Thumbnail
+export default VideoItem

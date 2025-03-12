@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar'
 import MiniSidebar from './MiniSidebar'
-import VideoGrids from './VideoGrids'
 import MainSidebar from './MainSidebar'
+import VideoGallery from './VideoGallery'
 
 const Home = () => {
 
@@ -14,7 +14,7 @@ const Home = () => {
 
         <div className='w-fit h-fit relative top-20 flex gap-4 '>
             {isMenuClicked ? <MainSidebar/> :  <MiniSidebar/>}
-            <VideoGrids/>
+           <VideoGallery/>
 
         </div>
   </div>
