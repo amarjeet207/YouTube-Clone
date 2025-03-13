@@ -1,24 +1,26 @@
-import React, { useState } from 'react'
-import NavBar from './NavBar'
-import MiniSidebar from './MiniSidebar'
-import MainSidebar from './MainSidebar'
-import VideoGallery from './VideoGallery'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleMenu } from '../Redux/reducer';
+import NavBar from './NavBar';
+import MiniSidebar from './MiniSidebar';
+import MainSidebar from './MainSidebar';
+import VideoGallery from './VideoGallery';
 
 const Home = () => {
+  const isMenuClicked = useSelector((state) => state.menu.isMenuClicked);
+  const dispatch = useDispatch();
 
-  const [isMenuClicked, setIsMenuClicked] = useState(true);
   return (
-    <div className='relatuve box-border z-0'>
+    <div className='max-w-screen h-screen box-border overflow-x-hidden '>
+      <NavBar isMenuClicked={isMenuClicked} setIsMenuClicked={() => dispatch(toggleMenu())} />
+
+      <div className='relative top-20 flex gap-4'>
+        {isMenuClicked ? <MainSidebar /> : <MiniSidebar />}
         
-        <NavBar isMenuClicked={isMenuClicked} setIsMenuClicked={setIsMenuClicked}/>
+        <VideoGallery />
+      </div>
+    </div>
+  );
+};
 
-        <div className='w-fit h-fit relative top-20 flex gap-4 '>
-            {isMenuClicked ? <MainSidebar/> :  <MiniSidebar/>}
-           <VideoGallery/>
-
-        </div>
-  </div>
-  )
-}
-
-export default Home
+export default Home;

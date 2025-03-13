@@ -1,4 +1,5 @@
 import React from 'react'
+import VideoItem from './VideoItem';
 
 
 const VideoGallery = () => {
@@ -7,18 +8,34 @@ const VideoGallery = () => {
                   "JavaScript","Stand up","Cricket bats","Indian Movies","Funny Videos","Cat Videos","Pop Music"];
 
   return (
-    <div className=' w-fit h-screen flex flex-col gap-10
-     box-border border-2 border-amber-400 pl-4 pr-4 font-sans '>
+    <div className='box-border border-amber-400 pl-4 pr-4 font-sans w-[78%] '>
 
       {/* Filters */}
-      <div className='flex gap-2 overflow-y-hidden '>
+      <div className='flex gap-5 mb-10 w-full '>
         {filters.map(filter => (
-          <div className='w-fit h-fit p-1 px-2 font-[Roboto] bg-[#0000000D] rounded-md text-[14px] text-zinc-800 font-semibold'>{filter}</div>
+          <button className='xs:text-[10px] lg:text-[14px] p-1 whitespace-nowrap text-center font-[Roboto] bg-[#0000000D] rounded-md text-[14px] text-zinc-800 font-semibold'>
+            {filter}
+          </button>
         ))}
       </div>
 
       {/* Videos Grid */}
-      <div className=' grid grid-cols-3 gap-4  border-2 border-red-500'>
+      <div className=' grid xs:grid-cols-1  md:grid-cols-3  gap-4'>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
+        <VideoItem pageType={"videoGallary"}/>
         
        
       </div>
@@ -27,3 +44,10 @@ const VideoGallery = () => {
 }
 
 export default VideoGallery
+
+
+
+
+
+
+

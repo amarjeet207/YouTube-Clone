@@ -8,7 +8,7 @@ import shorts from '../assets/shorts.svg'
 
 const MiniSidebar = () => {
   return (
-    <div className='w-fit box-border font-[sans-serif] font-medium text-[10px]'>
+    <div className=' box-border font-[sans-serif] font-medium text-[10px]'>
         <div className='mb-8 flex flex-col gap-2 items-center '>
           <img src={home} className='w-5' />
           <p className='text-xs '>Home</p>

@@ -26,14 +26,12 @@ import Ytkids from '../assets/youtube-kids.png'
 
 const MainSidebar = () => {
   return (
-    <div className=' box-border '>
-
-      <div className='relative left-0 h-[600px] overflow-y-hidden scroll-width 
-        hover:overflow-y-scroll overflow-x-hidden font-[sans-serif] font-medium text-zinc-800'>
+    
+      <div className='w-[18%] box-border z-5 font-[sans-serif] font-medium text-zinc-800'>
 
 
         {/* Home, Shorts, Subs  */}
-        <div className=' border-zinc-300 w-fit  '>
+        <div className='  w-full '>
           <div className='flex items-center gap-5 mb-5 pl-8'>
             <img src={home} className='w-6 ' />
             <p className='text-[14px] '>Home</p>
@@ -50,10 +48,10 @@ const MainSidebar = () => {
           </div>
         </div>
         
-        <hr class="bg-zinc-300 h-px border-0 " />
+        {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
         {/* You, History */}
-        <div className=' w-fit '>
+        <div className=' w-full border-t border-gray-300 my-4 '>
           <div className='flex items-center gap-5 mt-5 mb-5 pl-8'>
             <img src={account} />
             <p className='text-[14px]'>You</p>
@@ -65,22 +63,22 @@ const MainSidebar = () => {
           </div>
         </div>
 
-        <hr class="bg-zinc-300 h-px border-0 " />
+        {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
         {/* Sign In */}
-        <div className='mt-5 w-fit '>
-          <p className='pl-8 text-[14px] '>Sign in to like videos,<br />comment, and subscribe.</p>
+        <div className=' w-full border-t border-gray-300 my-4'>
+          <p className='mt-5 pl-8 text-[14px] '>Sign in to like videos,<br />comment, and subscribe.</p>
 
-          <div className='mt-3 mb-5 flex items-center gap-5 border-1 border-zinc-200 w-fit ml-8 rounded-3xl p-1 pr-2 pl-2 cursor-pointer'>
+          <div className='mt-3 mb-5 flex items-center gap-1 border-1 border-zinc-200 w-fit ml-8 rounded-3xl p-1 pr-2 pl-2 cursor-pointer'>
             <img src={sigin} />
             <p className='text-[#065fd4] font-medium'>Sign in</p>
           </div>
         </div>
 
-        <hr class="bg-zinc-300 h-px border-0 " />
+        {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
         {/* Explore */}
-        <div className=' w-fit '>
+        <div className=' w-full border-t border-gray-300 my-4 '>
           <h1 className='pl-7 font-bold text-[17px] mt-5'>Explore</h1>
 
           <div className='flex items-center gap-5 mt-5 mb-5 pl-8'>
@@ -140,10 +138,10 @@ const MainSidebar = () => {
 
         </div>
 
-        <hr class="bg-zinc-300 h-px border-0 " />
+        {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
         {/* More from YouTube */}
-        <div className=' border-zinc-300 w-fit '>
+        <div className=' w-full border-t border-gray-300 my-4'>
           <h1 className='pl-7 font-bold text-[17px] mt-5'> More from YouTube</h1>
 
           <div className='flex items-center gap-5 mt-5 mb-5 pl-8'>
@@ -163,10 +161,10 @@ const MainSidebar = () => {
 
         </div>
 
-        <hr class="bg-zinc-300 h-px border-0 " />
+        {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
         {/* Settings,history etc */}
-        <div className=' border-zinc-300 w-fit '>
+        <div className='  w-full border-t border-gray-300 my-4 '>
 
           <div className='flex items-center gap-5 mt-5 mb-5 pl-8'>
             <img src={settings} className='w-6 ' />
@@ -189,11 +187,11 @@ const MainSidebar = () => {
           </div>
 
         </div>
-        <hr class="bg-zinc-300 h-px border-0 " />
+        {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
         {/* Footer */}
-        <div className=' mt-5 w-fit '>
-          <p className='mb-5 text-xs font-bold pl-8 text-gray-600 '>
+        <div className=' mt-5 w-full border-t border-gray-300 my-4'>
+          <p className='mb-5 mt-5 text-xs font-bold pl-8 text-gray-600 '>
             About &nbsp;Press&nbsp; Copyright <br /> Contact us&nbsp; Creators <br /> 
             Advertise&nbsp; Developers
 
@@ -210,7 +208,7 @@ const MainSidebar = () => {
         </div>
 
       </div>
-    </div>
+   
   )
 }
 
