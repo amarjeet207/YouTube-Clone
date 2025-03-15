@@ -1,7 +1,7 @@
-import { login, register } from "../Controller/users.controller.js";
+import { signup, signin } from "../Controllers/users.controller.js";
 
 export function userRoutes(app){
-    app.post("/api/register",register);
+    app.post("/api/signup",signup);
 
-    app.post("/api/login",login);
+    app.post("/api/signin",signin);
 }

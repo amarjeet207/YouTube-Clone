@@ -1,6 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import { userRoutes } from "./Routes/users.routes.js";
+// import { commentRoutes } from "./Routes/comments.routes.js";
+// import { videosRoutes } from "./Routes/videos.routes.js";
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -25,3 +29,12 @@ db.on("error", () => {
 });
 
 
+
+// Middlewares
+app.use(express.json());
+app.use(cors());
+
+// Routes
+userRoutes(app);
+// videosRoutes(app);
+// commentRoutes(app);

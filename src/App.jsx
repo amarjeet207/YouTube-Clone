@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import VideoPage from './Components/VideoPage'
 import SignIn from './Components/SignIn'
 import Signup from './Components/Signup'
+import Channel from './Components/Channel'
 
 function App() {
 
@@ -23,6 +24,10 @@ function App() {
     {
       path:'/signup',
       element: <Signup/>
+    },
+    {
+      path:'/channel',
+      element: <Channel/>
     },
   ])
 

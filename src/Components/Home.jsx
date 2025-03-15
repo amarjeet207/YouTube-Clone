@@ -1,21 +1,19 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleMenu } from '../Redux/reducer';
 import NavBar from './NavBar';
 import MiniSidebar from './MiniSidebar';
 import MainSidebar from './MainSidebar';
 import VideoGallery from './VideoGallery';
+import { useAppContext } from '../AppContext';
 
 const Home = () => {
-  const isMenuClicked = useSelector((state) => state.menu.isMenuClicked);
-  const dispatch = useDispatch();
-
+   const { toggleMenu, setToggleMenu } = useAppContext();
+ 
   return (
     <div className='max-w-screen h-screen box-border overflow-x-hidden '>
-      <NavBar isMenuClicked={isMenuClicked} setIsMenuClicked={() => dispatch(toggleMenu())} />
+      <NavBar />
 
       <div className='relative top-20 flex gap-4'>
-        {isMenuClicked ? <MainSidebar /> : <MiniSidebar />}
+        {toggleMenu ? <MainSidebar /> : <MiniSidebar />}
         
         <VideoGallery />
       </div>

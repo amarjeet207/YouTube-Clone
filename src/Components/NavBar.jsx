@@ -1,16 +1,21 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleMenu } from '../Redux/reducer';
+import React, { useState } from 'react';
 import logo from '../assets/Youtube-Logo.png';
 import menu from '../assets/menu.svg';
 import search from '../assets/search.svg';
 import mic from '../assets/mic.svg';
 import vert from '../assets/more_vert.svg';
+import notification from '../assets/notification.png';
+import customer from '../assets/customer.png';
 import signin from '../assets/account.svg';
+import { Link } from 'react-router-dom';
+import { useAppContext } from '../AppContext';
 
 const NavBar = () => {
-  const isMenuClicked = useSelector((state) => state.menu.isMenuClicked);
-  const dispatch = useDispatch();
+
+  const { toggleMenu, setToggleMenu } = useAppContext();
+  const { isSignIn, setIsSignIn } = useAppContext();
+  const [profileClicked, setProfileClicked] = useState(false);
+
 
   return (
     <div className='bg-white top-0 fixed z-20 w-screen font-sans box-border flex items-center justify-between'>
@@ -19,7 +24,7 @@ const NavBar = () => {
         <img
           src={menu}
           className='cursor-pointer'
-          onClick={() => dispatch(toggleMenu())}
+          onClick={() => setToggleMenu(!toggleMenu)}
         />
         {/* Logo */}
         <img src={logo} className='cursor-pointer  ' />   
@@ -44,12 +49,28 @@ const NavBar = () => {
 
       {/* Signin */}
       <div className='flex items-center gap-5 mr-8'>
-        <img src={vert} className='cursor-pointer xs:hidden md:block' />
+
+        {isSignIn ? <img src={notification} className='cursor-pointer xs:hidden md:block w-5' /> :<img src={vert} className='cursor-pointer xs:hidden md:block' />}
+        
+        {isSignIn ? (<div>
+          <div className='relative' onClick={()=>setProfileClicked(!profileClicked)}><img src={customer} className='cursor-pointer xs:hidden md:block w-5' /></div> 
+
+          {profileClicked && <div className='absolute -ml-15 -mt-5 bg-white text-zinc-800 text-sm'>
+            <Link to="/channel" className='hover:underline'>Profile</Link>
+            <div className='hover:underline cursor-pointer'>Logout</div>
+          </div>}
+          
+        </div>) :
+
+        (<Link to='/signin'>
         <div className='flex items-center gap-2 border-1 border-zinc-200 rounded-3xl py-1 px-2  cursor-pointer'>
           <img src={signin} className='w-6'/>
           <p className='text-[#065fd4] font-medium xs:hidden lg:block'>Sign in</p>
         </div>
+        </Link>)}
+
       </div>
+
     </div>
   );
 };
