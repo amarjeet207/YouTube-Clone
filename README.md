@@ -92,16 +92,17 @@ npm start
 
 
 🔍 API Endpoints
-User Authentication
+
+## User Authentication
 POST /api/signup – Sign up a new user.
 POST /api/signin – Sign in and receive a token.
 
-Channel Management
+## Channel Management
 POST /api/channel – Fetch channel details.
 
-Video Management
+##  Video Management
 GET /api/videos –  Fetch all videos.
 GET /api/video/:id –  Fetch a video.
 
-Comment Management
+## Comment Management
 DELETE /api/video/comment – Add a comment to a video.
