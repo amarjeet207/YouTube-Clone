@@ -1,21 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../assets/Youtube-Logo.png';
 import menu from '../assets/menu.svg';
-import search from '../assets/search.svg';
+import searchicon from '../assets/search.svg';
 import mic from '../assets/mic.svg';
 import vert from '../assets/more_vert.svg';
 import notification from '../assets/notification.png';
 import customer from '../assets/customer.png';
+import plus from '../assets/plus.png';
 import signin from '../assets/account.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../AppContext';
 
 const NavBar = () => {
 
   const { toggleMenu, setToggleMenu } = useAppContext();
   const { isSignIn, setIsSignIn } = useAppContext();
+  const {allVideos, setAllVideos} =  useAppContext();
   const [profileClicked, setProfileClicked] = useState(false);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    if(id){
+      setIsSignIn(true);
+    } 
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/videos");
+        const data = await res.json();
+        let result = data;
+        if(search){
+        console.log(search)
+        result = result.filter(v => v.title.toLowerCase().includes(search.toLowerCase()));
+       }
+       setAllVideos(result);
+        
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
+  }, [search])
+
+  function handleSignOut(){
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userId");
+    setIsSignIn(false);
+  }
+  
 
   return (
     <div className='bg-white top-0 fixed z-20 w-screen font-sans box-border flex items-center justify-between'>
@@ -37,9 +71,10 @@ const NavBar = () => {
             type='text'
             placeholder='Search'
             className='border-0 outline-0 ml-2 text-[18px]'
+            onChange={e=>setSearch(e.target.value)}
           />
           <div className='bg-[#f8f8f8] border-l-1 border-zinc-300 h-full rounded-br-3xl rounded-tr-3xl pl-4 pr-4 flex items-center justify-center'>
-            <img src={search} className='w-7 cursor-pointer' />
+            <img src={searchicon} className='w-7 cursor-pointer' />
           </div>
         </div>
         <div className='p-2 rounded-full bg-zinc-100 xs:hidden md:block'>
@@ -50,14 +85,21 @@ const NavBar = () => {
       {/* Signin */}
       <div className='flex items-center gap-5 mr-8'>
 
-        {isSignIn ? <img src={notification} className='cursor-pointer xs:hidden md:block w-5' /> :<img src={vert} className='cursor-pointer xs:hidden md:block' />}
+        {isSignIn ?
+         (
+          <div className='flex items-center gap-2 bg-zinc-100 rounded-3xl py-2 px-4 cursor-pointer'>
+            <img src={plus} className='w-6'/>
+            <p className='text-zinc-900  '>Create</p>
+          </div>
+          ) :
+        (<img src={vert} className='cursor-pointer xs:hidden md:block' />)}
         
         {isSignIn ? (<div>
           <div className='relative' onClick={()=>setProfileClicked(!profileClicked)}><img src={customer} className='cursor-pointer xs:hidden md:block w-5' /></div> 
 
           {profileClicked && <div className='absolute -ml-15 -mt-5 bg-white text-zinc-800 text-sm'>
             <Link to="/channel" className='hover:underline'>Profile</Link>
-            <div className='hover:underline cursor-pointer'>Logout</div>
+            <div className='hover:underline cursor-pointer' onClick={handleSignOut}>Sign Out</div>
           </div>}
           
         </div>) :
@@ -65,7 +107,7 @@ const NavBar = () => {
         (<Link to='/signin'>
         <div className='flex items-center gap-2 border-1 border-zinc-200 rounded-3xl py-1 px-2  cursor-pointer'>
           <img src={signin} className='w-6'/>
-          <p className='text-[#065fd4] font-medium xs:hidden lg:block'>Sign in</p>
+          <p className='text-[#065fd4] font-medium '>Sign in</p>
         </div>
         </Link>)}
 

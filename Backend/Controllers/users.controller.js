@@ -49,7 +49,7 @@ export async function signin(req,res) {
 
        let token = jwt.sign({id: userExists._id},"32bitpersonalscretkeys",{expiresIn:"10m"});
 
-       res.status(200).send({message: "Login successful!", accessToken:token})
+       res.status(200).send({message: "Login successful!", accessToken:token,userExists})
         
     } catch (error) {
         console.error("Error fetching users:", error);

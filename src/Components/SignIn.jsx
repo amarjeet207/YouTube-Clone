@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import google from "../assets/google.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from '../AppContext';
+import { toast } from "react-toastify";
+
 
 const SignIn = () => {
-
-  const { isSignIn, setIsSignIn } = useAppContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,18 +31,22 @@ const SignIn = () => {
       if (response.status === 200) {
         // storing JWT token in the local storage
         localStorage.setItem("accessToken", data.accessToken);
-        setIsSignIn(!isSignIn);
-        alert("Login Successfully");
-        navigate("/");
+        localStorage.setItem("userId",data.userExists._id);
+        toast("Login Successfully");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000); 
+     
       } else if (response.status === 403) {
-        alert("Email or password incorrect.");
+        toast("Email or password incorrect.");
       } else {
-        alert("Something went wrong. Try again!");
+        toast("Something went wrong. Try again!");
       }
     } catch (error) {
       console.error("Sign-up error:", error);
     }
   }
+
 
   return (
     <div className="flex justify-center items-center bg-zinc-200 h-screen font-sans">

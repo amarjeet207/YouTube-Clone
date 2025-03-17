@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import VideoPage from './Components/VideoPage'
 import SignIn from './Components/SignIn'
 import Signup from './Components/Signup'
+import { ToastContainer } from 'react-toastify';
 import Channel from './Components/Channel'
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       element: <Home/>
     },
     {
-      path:'/videopage',
+      path:'/videopage/:id',
       element: <VideoPage/>
     },
     {
@@ -27,14 +28,15 @@ function App() {
     },
     {
       path:'/channel',
-      element: <Channel/>
-    },
+      element:<Channel/>
+    }
   ])
 
 
   return (
     <div className='box-border p-0 m-0 '>
        <RouterProvider router={router}/>
+       <ToastContainer />
     </div>
   )
 }

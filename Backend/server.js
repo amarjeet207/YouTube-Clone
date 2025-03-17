@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { userRoutes } from "./Routes/users.routes.js";
 // import { commentRoutes } from "./Routes/comments.routes.js";
-// import { videosRoutes } from "./Routes/videos.routes.js";
+import { videoRoutes } from "./Routes/videos.routes.js";
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -36,5 +36,5 @@ app.use(cors());
 
 // Routes
 userRoutes(app);
-// videosRoutes(app);
+videoRoutes(app);
 // commentRoutes(app);

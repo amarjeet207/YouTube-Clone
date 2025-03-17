@@ -7,9 +7,10 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [isSignIn, setIsSignIn] = useState(false);
+  const [allVideos, setAllVideos] = useState([]);
 
   return (
-    <AppContext.Provider value={{ toggleMenu, setToggleMenu, isSignIn, setIsSignIn }}>
+    <AppContext.Provider value={{ toggleMenu, setToggleMenu, isSignIn, setIsSignIn,allVideos,setAllVideos }}>
       {children}
     </AppContext.Provider>
   );

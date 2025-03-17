@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import google from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -25,12 +26,14 @@ const Signup = () => {
       });
 
       if (response.status === 201) {
-        alert("Account created successfully!");
-        navigate("/signin");
+        toast("Account created successfully!");
+        setTimeout(() => {
+          navigate("/signin");
+        }, 1000);
       } else if (response.status === 403) {
-        alert("User with this email already exists.");
+        toast("User with this email already exists.");
       } else {
-        alert("Something went wrong. Try again!");
+        toast("Something went wrong. Try again!");
       }
     } catch (error) {
       console.error("Sign-up error:", error);
