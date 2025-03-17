@@ -91,7 +91,7 @@ bash
 npm start
 
 
-🔍 API Endpoints
+# 🔍 API Endpoints
 
 ## User Authentication
 POST /api/signup – Sign up a new user.
