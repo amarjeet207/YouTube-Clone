@@ -119,7 +119,7 @@ const VideoPage = () => {
                   <div>
                     <img
                       src="https://play-lh.googleusercontent.com/LeX880ebGwSM8Ai_zukSE83vLsyUEUePcPVsMJr2p8H3TUYwNg-2J_dVMdaVhfv1cHg"
-                      className="w-10 h-10 rounded-full"
+                      className="w-10 h-10 rounded-full cursor-pointer"
                     />
                   </div>
                   <div>{video.channelName}</div>
@@ -131,15 +131,15 @@ const VideoPage = () => {
                 {/* like, dislike, share, vert   */}
                 <div className="flex gap-4 items-center">
                   <div className="flex items-center bg-gray-100 rounded-3xl px-4 py-1 ">
-                    <img src={like} className="w-5 mr-1" />
-                    <p className="border-r-1 pr-2 border-gray-200 mr-2">
+                    <img src={like} className="w-5 mr-1 cursor-pointer" />
+                    <p className="border-r-1 pr-2 border-gray-200 mr-2 ">
                       {video.likes}
                     </p>
-                    <img src={dislike} className="w-5 " />
+                    <img src={dislike} className="w-5 cursor-pointer " />
                   </div>
 
                   <div className="flex items-center bg-gray-100 font-medium rounded-3xl px-4 py-1">
-                    <img src={share} className="w-5 mr-1" />
+                    <img src={share} className="w-5 mr-1 cursor-pointer" />
                     <p>Share</p>
                   </div>
                 </div>

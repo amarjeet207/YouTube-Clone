@@ -23,8 +23,12 @@ import help from '../assets/help.svg'
 import feedback from '../assets/feedback.svg'
 import Ytmusic from '../assets/youtube-music.png'
 import Ytkids from '../assets/youtube-kids.png'
+import { useAppContext } from "../AppContext";
 
 const MainSidebar = () => {
+  
+  const { isSignIn, setIsSignIn } = useAppContext();
+
   return (
     
       <div className='w-[18%] box-border z-5 font-[sans-serif] font-medium text-zinc-800'>
@@ -66,14 +70,14 @@ const MainSidebar = () => {
         {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
         {/* Sign In */}
-        <div className=' w-full border-t border-gray-300 my-4'>
+        {isSignIn ? "" : <div className=' w-full border-t border-gray-300 my-4'>
           <p className='mt-5 pl-8 text-[14px] '>Sign in to like videos,<br />comment, and subscribe.</p>
 
           <div className='mt-3 mb-5 flex items-center gap-1 border-1 border-zinc-200 w-fit ml-8 rounded-3xl p-1 pr-2 pl-2 cursor-pointer'>
             <img src={sigin} />
             <p className='text-[#065fd4] font-medium'>Sign in</p>
           </div>
-        </div>
+        </div>}
 
         {/* <hr class="bg-zinc-300 h-px border-0 " /> */}
 
