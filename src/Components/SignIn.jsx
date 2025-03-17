@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
 const SignIn = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -31,12 +29,11 @@ const SignIn = () => {
       if (response.status === 200) {
         // storing JWT token in the local storage
         localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("userId",data.userExists._id);
+        localStorage.setItem("userId", data.userExists._id);
         toast("Login Successfully");
         setTimeout(() => {
           navigate("/");
-        }, 2000); 
-     
+        }, 2000);
       } else if (response.status === 403) {
         toast("Email or password incorrect.");
       } else {
@@ -46,7 +43,6 @@ const SignIn = () => {
       console.error("Sign-up error:", error);
     }
   }
-
 
   return (
     <div className="flex justify-center items-center bg-zinc-200 h-screen font-sans">

@@ -4,7 +4,7 @@ import vert from "../assets/more_vert.svg";
 
 const VideoItem = (props) => {
   return (
-    <div className={`box-border font-Arial flex gap-3  flex-col`}>
+    <div className={`w-80 h-80  box-border font-Arial flex gap-3  flex-col`}>
 
       {/* thumbnail */}
       <div className={`w-80 h-48 overflow-hidden`}>
@@ -16,7 +16,7 @@ const VideoItem = (props) => {
 
       <div>
         {/* channel profile, title,vert */}
-        <div className="flex gap-2 justify-between ">
+        <div className="flex gap-2 justify-between w-full">
          
             <div>
               <img

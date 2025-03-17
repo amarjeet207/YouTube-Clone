@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import MiniSidebar from "./MiniSidebar";
-import thumbnail from "../assets/thumbnail.webp";
 import like from "../assets/like.svg";
 import dislike from "../assets/dislike.svg";
 import share from "../assets/share.png";
@@ -99,12 +98,11 @@ const VideoPage = () => {
           </div>
         )}
 
-        <div className="ml-5 flex xs:flex-col lg:flex-row gap-10">
+        <div className="w-screen ml-5 mr-5 flex xs:flex-col lg:flex-row gap-10 ">
           {/* Video*/}
           {video ? (
             <div className=" w-[70%] flex flex-col">
               <div className=" h-[25rem] object-cover overflow-hidden">
-                {/* <img src={thumbnail} className="w-full h-full rounded-lg" /> */}
                 <iframe
                   className="w-full h-full rounded-lg"
                   src={video.videoURL}
@@ -183,6 +181,7 @@ const VideoPage = () => {
             {allVideos.map((video) => (
               <Link to={`/videopage/${video._id}`} key={video._id}>
                 <VideoItem
+                  key={video._id}
                   title={video.title}
                   thumbnailURL={video.thumbnailURL}
                   channelName={video.channelName}

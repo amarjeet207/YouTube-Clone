@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import userModel from "../Models/users.model.js";
+import videoModel from "../Models/videos.model.js";
 import jwt from "jsonwebtoken";
 
 
@@ -54,6 +55,23 @@ export async function signin(req,res) {
     } catch (error) {
         console.error("Error fetching users:", error);
         res.status(500).send({ error: "Error fetching users" });
+    }
+    
+}
+
+
+export async function fetchChannelDetails(req,res) {
+    try {
+        const {userId} = req.body;
+        
+       const user = await userModel.findById(userId);
+       const videos = await videoModel.find({userID: userId})
+
+       res.status(200).send({message: "Channel details", user, videos})
+        
+    } catch (error) {
+        console.error("Error fetching channel details:", error);
+        res.status(500).send({ error: "Error channel details" });
     }
     
 }

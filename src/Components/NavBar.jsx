@@ -4,7 +4,6 @@ import menu from '../assets/menu.svg';
 import searchicon from '../assets/search.svg';
 import mic from '../assets/mic.svg';
 import vert from '../assets/more_vert.svg';
-import notification from '../assets/notification.png';
 import customer from '../assets/customer.png';
 import plus from '../assets/plus.png';
 import signin from '../assets/account.svg';
@@ -20,11 +19,16 @@ const NavBar = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const id = localStorage.getItem("userId");
-    if(id){
+    if (id) {
       setIsSignIn(true);
-    } 
+    }
+  }, []);
+
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("http://localhost:3000/api/videos");
@@ -52,7 +56,7 @@ const NavBar = () => {
   
 
   return (
-    <div className='bg-white top-0 fixed z-20 w-screen font-sans box-border flex items-center justify-between'>
+    <div className='bg-white top-0 fixed z-20 w-screen font-sans box-border flex items-center justify-between pt-2 pb-2'>
       <div className='w-24 object-cover flex items-center gap-5 ml-8 '>
         {/* menu */}
         <img
@@ -61,7 +65,7 @@ const NavBar = () => {
           onClick={() => setToggleMenu(!toggleMenu)}
         />
         {/* Logo */}
-        <img src={logo} className='cursor-pointer  ' />   
+        <Link to='/'><img src={logo} className='cursor-pointer w-full'/></Link>   
       </div>
 
       {/* Search , mic */}
@@ -95,17 +99,18 @@ const NavBar = () => {
         (<img src={vert} className='cursor-pointer xs:hidden md:block' />)}
         
         {isSignIn ? (<div>
-          <div className='relative' onClick={()=>setProfileClicked(!profileClicked)}><img src={customer} className='cursor-pointer xs:hidden md:block w-5' /></div> 
+          <div className='relative' onClick={()=>setProfileClicked(!profileClicked)}><img src={customer} 
+          className='cursor-pointer  w-5' /></div> 
 
-          {profileClicked && <div className='absolute -ml-15 -mt-5 bg-white text-zinc-800 text-sm'>
-            <Link to="/channel" className='hover:underline'>Profile</Link>
+          {profileClicked && <div className='absolute -ml-25 -mt-5 text-zinc-800 text-md p-4 rounded-md bg-amber-200'>
+            <Link to="/channel" className='hover:underline mb-5'>Profile</Link>
             <div className='hover:underline cursor-pointer' onClick={handleSignOut}>Sign Out</div>
           </div>}
           
         </div>) :
 
         (<Link to='/signin'>
-        <div className='flex items-center gap-2 border-1 border-zinc-200 rounded-3xl py-1 px-2  cursor-pointer'>
+        <div className='flex items-center gap-2 border-1 border-zinc-200 rounded-3xl py-1 px-2 shadow-md  cursor-pointer'>
           <img src={signin} className='w-6'/>
           <p className='text-[#065fd4] font-medium '>Sign in</p>
         </div>
