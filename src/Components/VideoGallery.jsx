@@ -25,42 +25,42 @@ const VideoGallery = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/videos");
-        const data = await res.json();
-        console.log(data);
-        setAllVideos(data); // Initially set allVideos with the full video list
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+        try {
+            const response = await axios.get("http://localhost:3000/api/videos");
+            const data = response.data; 
+            console.log(data);
+            setAllVideos(data); // Initially set allVideos with the full video list
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     };
 
     fetchData();
-  }, [setAllVideos]);
+}, [setAllVideos]);
 
-  useEffect(() => {
+useEffect(() => {
     const fetchAndFilter = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/videos");
-        const data = await res.json();
+        try {
+            const response = await axios.get("http://localhost:3000/api/videos");
+            const data = response.data; 
 
-        let result = data;
-        const activeFilter = Object.keys(filters).find((key) => filters[key]); // Find the active filter
+            let result = data;
+            const activeFilter = Object.keys(filters).find((key) => filters[key]); // Find the active filter
 
-        if (activeFilter === "All") {
-          result = data; // Show all videos if "All" is active
-        } else if (activeFilter) {
-          result = data.filter((video) => video.category === activeFilter); // Filter videos by the active category
+            if (activeFilter === "All") {
+                result = data; // Show all videos if "All" is active
+            } else if (activeFilter) {
+                result = data.filter((video) => video.category === activeFilter); // Filter videos by the active category
+            }
+
+            setAllVideos(result);
+        } catch (error) {
+            console.error("Error filtering videos:", error);
         }
-
-        setAllVideos(result);
-      } catch (error) {
-        console.error("Error filtering videos:", error);
-      }
     };
 
     fetchAndFilter();
-  }, [filters, setAllVideos]);
+}, [filters, setAllVideos]);
 
   const handleFilterChange = (filter) => {
     setFilters(() => {

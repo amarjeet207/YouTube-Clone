@@ -16,31 +16,27 @@ const Channel = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const userId = localStorage.getItem("userId");
-        const response = await fetch("http://localhost:3000/api/channel", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userId: userId
-          }),
-        });
+        try {
+            const userId = localStorage.getItem("userId");
 
-        const data = await response.json();
+            const response = await axios.post("http://localhost:3000/api/channel", {
+                userId: userId,
+            });
 
-        setUser(data.user);
-        setVideos(data.videos);
-        console.log(data.user)
-        console.log(data.videos)
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+            // Axios automatically parses the response as JSON
+            const data = response.data;
+
+            setUser(data.user);
+            setVideos(data.videos);
+            console.log(data.user);
+            console.log(data.videos);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     };
 
     fetchData();
-  }, [setAllVideos]);
+}, [setAllVideos]); 
 
   return (
     <div className="max-w-screen box-border font-sans">

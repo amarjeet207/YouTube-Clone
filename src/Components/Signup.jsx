@@ -12,35 +12,29 @@ const Signup = () => {
   const navigate = useNavigate();
 
   async function handleSignUp(e) {
-    e.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3000/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName: fullName,
-          email: email,
-          password: password,
-          profilePicUrl: profilePicUrl
-        }),
-      });
-
-      if (response.status === 201) {
-        toast("Account created successfully!");
-        setTimeout(() => {
-          navigate("/signin");
-        }, 1000);
-      } else if (response.status === 403) {
-        toast("User with this email already exists.");
-      } else {
-        toast("Something went wrong. Try again!");
+      e.preventDefault();
+  
+      try {
+          const response = await axios.post("http://localhost:3000/api/signup", {
+              fullName: fullName,
+              email: email,
+              password: password,
+              profilePicUrl: profilePicUrl,
+          });
+  
+          if (response.status === 201) {
+              toast("Account created successfully!");
+              setTimeout(() => {
+                  navigate("/signin");
+              }, 1000);
+          } else if (response.status === 403) {
+              toast("User with this email already exists.");
+          } else {
+              toast("Something went wrong. Try again!");
+          }
+      } catch (error) {
+          console.error("Sign-up error:", error);
       }
-    } catch (error) {
-      console.error("Sign-up error:", error);
-    }
   }
 
   return (

@@ -24,65 +24,60 @@ const VideoPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/videos");
-        const data = await res.json();
-        console.log(data);
-        setAllVideos(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+        try {
+            const response = await axios.get("http://localhost:3000/api/videos");
+            const data = response.data; 
+            console.log(data);
+            setAllVideos(data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     };
 
     const fetchVideo = async () => {
-      try {
-        const res = await fetch(`http://localhost:3000/api/video/${id}`);
-        const data = await res.json();
-        console.log(data[0]);
-        setVideo(data[0]);
-      } catch (error) {
-        console.error("Error fetching Video:", error);
-      }
+        try {
+            const response = await axios.get(`http://localhost:3000/api/video/${id}`);
+            const data = response.data;
+            console.log(data[0]);
+            setVideo(data[0]);
+        } catch (error) {
+            console.error("Error fetching Video:", error);
+        }
     };
 
     fetchData();
     fetchVideo();
-  }, []);
+}, []);
 
-  async function handleComment() {
-    try {
+async function handleComment() {
+  try {
       const token = localStorage.getItem("accessToken");
       const userId = localStorage.getItem("userId");
-      const res = await fetch("http://localhost:3000/api/video/comment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `JWT ${token}`,
-        },
-        body: JSON.stringify({
+
+      const response = await axios.post("http://localhost:3000/api/video/comment", {
           commentText: commentText,
           userId: userId,
-          videoId: id
-          
-        }),
+          videoId: id,
+      }, {
+          headers: {
+              Authorization: `JWT ${token}`, // Adding the JWT token in the Authorization header
+          },
       });
 
-      const data = await res.json();
-
-      if (res.status === 200) {
-        toast("Comment Added");
-        setTimeout(() => {
-          window.location.href = `/videopage/${id}`;
-        }, 1000);
-      } else if (res.status === 403) {
-        toast("Please Login");
+      if (response.status === 200) {
+          toast("Comment Added");
+          setTimeout(() => {
+              window.location.href = `/videopage/${id}`;
+          }, 1000);
+      } else if (response.status === 403) {
+          toast("Please Login");
       } else {
-        toast("Something went wrong. Try again!");
+          toast("Something went wrong. Try again!");
       }
-    } catch (error) {
-      console.error("Error Adding Video:", error);
-    }
+  } catch (error) {
+      console.error("Error Adding Comment:", error);
   }
+}
 
   return (
     <div className="max-w-screen box-border font-sans  ">

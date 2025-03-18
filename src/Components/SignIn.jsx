@@ -14,36 +14,30 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+        const response = await axios.post("http://localhost:3000/api/signin", {
+            email: email,
+            password: password,
+        });
 
-      const data = await response.json();
+        const data = response.data;
 
-      if (response.status === 200) {
-        // storing JWT token in the local storage
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("userId", data.userExists._id);
-        toast("Login Successfully");
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      } else if (response.status === 403) {
-        toast("Email or password incorrect.");
-      } else {
-        toast("Something went wrong. Try again!");
-      }
+        if (response.status === 200) {
+            // Storing JWT token in the local storage
+            localStorage.setItem("accessToken", data.accessToken);
+            localStorage.setItem("userId", data.userExists._id);
+            toast("Login Successfully");
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } else if (response.status === 403) {
+            toast("Email or password incorrect.");
+        } else {
+            toast("Something went wrong. Try again!");
+        }
     } catch (error) {
-      console.error("Sign-up error:", error);
+        console.error("Sign-in error:", error);
     }
-  }
+}
 
   return (
     <div className="flex justify-center items-center bg-zinc-200 h-screen font-sans">
