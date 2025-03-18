@@ -20,7 +20,7 @@ const VideoItem = (props) => {
          
             <div>
               <img
-                src="https://play-lh.googleusercontent.com/LeX880ebGwSM8Ai_zukSE83vLsyUEUePcPVsMJr2p8H3TUYwNg-2J_dVMdaVhfv1cHg"
+                src={props.profilePicUrl}
                 className="w-10 h-10 rounded-full"
               />
             </div>

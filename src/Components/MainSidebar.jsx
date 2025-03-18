@@ -31,24 +31,24 @@ const MainSidebar = () => {
 
   return (
     
-      <div className='w-[18%] box-border z-5 font-[sans-serif] font-medium text-zinc-800'>
+      <div className='xs:hidden md:block w-[18%] box-border z-5 font-[sans-serif] font-medium text-zinc-800'>
 
 
         {/* Home, Shorts, Subs  */}
         <div className='  w-full '>
-          <div className='flex items-center gap-5 mb-5 pl-8'>
+          <div className='flex items-center gap-5 mb-5 pl-8 '>
             <img src={home} className='w-6 ' />
-            <p className='text-[14px] '>Home</p>
+            <p className='text-[14px]  '>Home</p>
           </div>
 
-          <div className='flex items-center gap-5 mb-5 pl-8'>
+          <div className='flex items-center gap-5 mb-5 pl-8 '>
             <img src={shorts} className='w-6 ' />
-            <p className='text-[14px]'>Shorts</p>
+            <p className='text-[14px] '>Shorts</p>
           </div>
 
-          <div className='flex items-center gap-5 mb-5 pl-8'>
+          <div className='flex items-center gap-5 mb-5 pl-8 '>
             <img src={Subscriptions} className='w-6 ' />
-            <p className='text-[14px]'>Subscriptions</p>
+            <p className='text-[14px] '>Subscriptions</p>
           </div>
         </div>
         

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import google from "../assets/google.png";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from 'axios';
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [profilePicUrl,setProfilePicUrl] = useState("");
   const navigate = useNavigate();
 
   async function handleSignUp(e) {
@@ -22,6 +24,7 @@ const Signup = () => {
           fullName: fullName,
           email: email,
           password: password,
+          profilePicUrl: profilePicUrl
         }),
       });
 

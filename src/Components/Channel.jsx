@@ -6,6 +6,7 @@ import MiniSidebar from "./MiniSidebar";
 import cover from "../assets/cover.jpg";
 import searchicon from "../assets/search.svg";
 import VideoItem from "./VideoItem";
+import axios from 'axios';
 
 const Channel = () => {
   const { toggleMenu, setToggleMenu } = useAppContext();
@@ -66,7 +67,7 @@ const Channel = () => {
           <div className="flex flex-col gap-6 border-b-1 border-zinc-400 ">
             <div className="flex gap-10">
               <div className="w-40 h-40">
-                <img  src="https://play-lh.googleusercontent.com/LeX880ebGwSM8Ai_zukSE83vLsyUEUePcPVsMJr2p8H3TUYwNg-2J_dVMdaVhfv1cHg"
+                <img  src= {user && user.profilePicUrl ? user.profilePicUrl : cover }
                 className="w-full h-full rounded-full" />
               </div>
 
@@ -97,6 +98,7 @@ const Channel = () => {
                   thumbnailURL={video.thumbnailURL}
                   channelName={video.channelName}
                   views={video.views}
+                  profilePicUrl={video.profilePicUrl}
                 />
               </Link>
             ))}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import VideoItem from './VideoItem';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../AppContext';
+import axios from 'axios';
 
 const VideoGallery = () => {
   const { allVideos, setAllVideos } = useAppContext();
@@ -102,6 +103,7 @@ const VideoGallery = () => {
               thumbnailURL={video.thumbnailURL}
               channelName={video.channelName}
               views={video.views}
+              profilePicUrl={video.profilePicUrl}
             />
           </Link>
         ))}
